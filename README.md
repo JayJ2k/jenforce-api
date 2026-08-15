@@ -10,88 +10,71 @@ O **Jenforce** é uma plataforma para organizar solicitações de suporte, prior
 
 A API permite que usuários criem chamados, acompanhem suas solicitações e adicionem comentários ao histórico. Usuários com perfil de atendimento ou administração podem visualizar e gerenciar chamados de forma mais ampla.
 
-## Funcionalidades
+## ## Padrão de contribuição
+
+Este projeto segue um fluxo obrigatório baseado em Issues, branches e Pull Requests.
+
+Antes de qualquer alteração chegar à branch `main`, é necessário:
+
+- Criar uma Issue no GitHub
+- Criar uma branch específica para a tarefa
+- Abrir um Pull Request mencionando a Issue relacionada
+- Executar validações de build, qualidade, segurança e arquitetura
+
+As regras completas estão documentadas no arquivo `AGENTS.md`](./[AGENTS.md](http://AGENTS.md)).  
+
+**Funcionalidades**
 
 - Cadastro de usuários
-
 - Login com autenticação JWT
-
 - Rota protegida para perfil autenticado
-
 - Abertura de chamados
-
 - Listagem de chamados
-
 - Detalhamento de chamado
-
 - Atualização de status
-
 - Atualização de prioridade
-
 - Comentários no histórico do chamado
-
 - Controle de acesso por perfil de usuário
 
 ## Perfis de usuário
 
 - `CUSTOMER` — usuário solicitante
-
 - `AGENT` — agente de suporte
-
 - `ADMIN` — administrador
 
 ## Status dos chamados
 
 - `OPEN` — Aberto
-
 - `IN_PROGRESS` — Em atendimento
-
 - `RESOLVED` — Resolvido
-
 - `CLOSED` — Encerrado
 
 ## Prioridades
 
 - `LOW` — Baixa
-
 - `MEDIUM` — Média
-
 - `HIGH` — Alta
-
 - `URGENT` — Urgente
 
 ## Categorias
 
 - `ACCESS` — Acesso
-
 - `SYSTEM` — Sistema
-
 - `HARDWARE` — Hardware
-
 - `NETWORK` — Rede
-
 - `REQUEST` — Solicitação
-
 - `BUG` — Erro/Bug
 
 ## Tecnologias utilizadas
 
 - Node.js
-
 - Express
-
 - TypeScript
-
 - Prisma
-
 - SQLite
-
 - JWT
-
 - bcryptjs
-
 - dotenv
-
 - CORS
 
 ## Estrutura principal
@@ -137,3 +120,5 @@ jenforce-api/
 ├── package.json
 
 └── tsconfig.json
+```
+
