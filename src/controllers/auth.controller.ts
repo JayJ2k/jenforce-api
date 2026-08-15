@@ -1,9 +1,9 @@
-import { Request, Response } from "express";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { UserRole } from "@prisma/client";
+import bcrypt from "bcryptjs";
+import type { Request, Response } from "express";
+import jwt from "jsonwebtoken";
 import { prisma } from "../config/prisma";
-import { AuthenticatedRequest } from "../middlewares/auth.middleware";
+import type { AuthenticatedRequest } from "../middlewares/auth.middleware";
 
 function generateToken(userId: string, role: UserRole) {
   return jwt.sign(
@@ -14,7 +14,7 @@ function generateToken(userId: string, role: UserRole) {
     process.env.JWT_SECRET || "jenforce-local-secret",
     {
       expiresIn: "7d",
-    }
+    },
   );
 }
 
