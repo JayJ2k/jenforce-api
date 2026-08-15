@@ -122,3 +122,29 @@ jenforce-api/
 â””â”€â”€ tsconfig.json
 ```
 
+## Qualidade de código com Biome
+
+O Jenforce utiliza o **Biome** para padronização de código, formatação, lint e organização de imports.
+
+Antes de abrir um Pull Request, execute:
+
+```bash
+npm run build
+npm run check
+```
+
+Para aplicar correções automáticas de formatação e organização de imports, execute:
+
+```bash
+npx biome check --write .
+```
+
+Scripts disponíveis:
+
+```bash
+npm run format
+npm run lint
+npm run check
+```
+
+Essa validação faz parte do fluxo obrigatório definido no arquivo [`AGENTS.md`](./AGENTS.md).
