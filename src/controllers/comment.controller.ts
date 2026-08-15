@@ -1,13 +1,9 @@
-import { Response } from "express";
 import { UserRole } from "@prisma/client";
+import type { Response } from "express";
 import { prisma } from "../config/prisma";
-import { AuthenticatedRequest } from "../middlewares/auth.middleware";
+import type { AuthenticatedRequest } from "../middlewares/auth.middleware";
 
-function canAccessTicket(
-  userId: string,
-  userRole: UserRole,
-  requesterId: string
-) {
+function canAccessTicket(userId: string, userRole: UserRole, requesterId: string) {
   if (userRole === UserRole.ADMIN || userRole === UserRole.AGENT) {
     return true;
   }
@@ -15,10 +11,7 @@ function canAccessTicket(
   return userId === requesterId;
 }
 
-export async function createComment(
-  request: AuthenticatedRequest,
-  response: Response
-) {
+export async function createComment(request: AuthenticatedRequest, response: Response) {
   const userId = request.userId;
   const userRole = request.userRole;
   const { ticketId } = request.params as { ticketId: string };
@@ -78,10 +71,7 @@ export async function createComment(
   });
 }
 
-export async function listComments(
-  request: AuthenticatedRequest,
-  response: Response
-) {
+export async function listComments(request: AuthenticatedRequest, response: Response) {
   const userId = request.userId;
   const userRole = request.userRole;
   const { ticketId } = request.params as { ticketId: string };

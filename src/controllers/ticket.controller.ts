@@ -1,13 +1,13 @@
-import { Response } from "express";
 import {
-  Prisma,
+  type Prisma,
   TicketCategory,
   TicketPriority,
   TicketStatus,
   UserRole,
 } from "@prisma/client";
+import type { Response } from "express";
 import { prisma } from "../config/prisma";
-import { AuthenticatedRequest } from "../middlewares/auth.middleware";
+import type { AuthenticatedRequest } from "../middlewares/auth.middleware";
 
 function generateProtocol() {
   const year = new Date().getFullYear();
@@ -20,11 +20,7 @@ function isValidEnumValue<T extends object>(enumObject: T, value: unknown) {
   return Object.values(enumObject).includes(value as T[keyof T]);
 }
 
-function canAccessTicket(
-  userId: string,
-  userRole: UserRole,
-  requesterId: string
-) {
+function canAccessTicket(userId: string, userRole: UserRole, requesterId: string) {
   if (userRole === UserRole.ADMIN || userRole === UserRole.AGENT) {
     return true;
   }
@@ -32,10 +28,7 @@ function canAccessTicket(
   return userId === requesterId;
 }
 
-export async function createTicket(
-  request: AuthenticatedRequest,
-  response: Response
-) {
+export async function createTicket(request: AuthenticatedRequest, response: Response) {
   const userId = request.userId;
   const { title, description, priority, category } = request.body;
 
@@ -58,9 +51,7 @@ export async function createTicket(
   }
 
   const selectedPriority =
-    priority && isValidEnumValue(TicketPriority, priority)
-      ? priority
-      : TicketPriority.MEDIUM;
+    priority && isValidEnumValue(TicketPriority, priority) ? priority : TicketPriority.MEDIUM;
 
   const ticket = await prisma.ticket.create({
     data: {
@@ -98,10 +89,7 @@ export async function createTicket(
   });
 }
 
-export async function listTickets(
-  request: AuthenticatedRequest,
-  response: Response
-) {
+export async function listTickets(request: AuthenticatedRequest, response: Response) {
   const userId = request.userId;
   const userRole = request.userRole;
 
@@ -123,17 +111,11 @@ export async function listTickets(
     where.status = status as TicketStatus;
   }
 
-  if (
-    typeof priority === "string" &&
-    isValidEnumValue(TicketPriority, priority)
-  ) {
+  if (typeof priority === "string" && isValidEnumValue(TicketPriority, priority)) {
     where.priority = priority as TicketPriority;
   }
 
-  if (
-    typeof category === "string" &&
-    isValidEnumValue(TicketCategory, category)
-  ) {
+  if (typeof category === "string" && isValidEnumValue(TicketCategory, category)) {
     where.category = category as TicketCategory;
   }
 
@@ -202,10 +184,7 @@ export async function listTickets(
   });
 }
 
-export async function getTicketById(
-  request: AuthenticatedRequest,
-  response: Response
-) {
+export async function getTicketById(request: AuthenticatedRequest, response: Response) {
   const userId = request.userId;
   const userRole = request.userRole;
   const { id } = request.params as { id: string };
@@ -272,15 +251,11 @@ export async function getTicketById(
   });
 }
 
-export async function updateTicket(
-  request: AuthenticatedRequest,
-  response: Response
-) {
+export async function updateTicket(request: AuthenticatedRequest, response: Response) {
   const userId = request.userId;
   const userRole = request.userRole;
   const { id } = request.params as { id: string };
-  const { title, description, status, priority, category, assigneeId } =
-    request.body;
+  const { title, description, status, priority, category, assigneeId } = request.body;
 
   if (!userId || !userRole) {
     return response.status(401).json({
@@ -328,10 +303,7 @@ export async function updateTicket(
     data.category = category;
   }
 
-  if (
-    assigneeId &&
-    (userRole === UserRole.ADMIN || userRole === UserRole.AGENT)
-  ) {
+  if (assigneeId && (userRole === UserRole.ADMIN || userRole === UserRole.AGENT)) {
     data.assignee = {
       connect: {
         id: assigneeId,
@@ -385,10 +357,7 @@ export async function updateTicket(
   });
 }
 
-export async function deleteTicket(
-  request: AuthenticatedRequest,
-  response: Response
-) {
+export async function deleteTicket(request: AuthenticatedRequest, response: Response) {
   const userId = request.userId;
   const userRole = request.userRole;
   const { id } = request.params as { id: string };

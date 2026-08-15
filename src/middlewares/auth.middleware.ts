@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from "express";
+import type { UserRole } from "@prisma/client";
+import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { UserRole } from "@prisma/client";
 
 type TokenPayload = {
   sub: string;
@@ -15,7 +15,7 @@ export type AuthenticatedRequest = Request & {
 export function authMiddleware(
   request: AuthenticatedRequest,
   response: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   const authHeader = request.headers.authorization;
 
@@ -36,7 +36,7 @@ export function authMiddleware(
   try {
     const decoded = jwt.verify(
       token,
-      process.env.JWT_SECRET || "jenforce-local-secret"
+      process.env.JWT_SECRET || "jenforce-local-secret",
     ) as TokenPayload;
 
     request.userId = decoded.sub;
