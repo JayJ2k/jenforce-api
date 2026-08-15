@@ -20,7 +20,6 @@ function generateToken(userId: string, role: UserRole) {
 
 export async function register(request: Request, response: Response) {
   const { name, email, password } = request.body;
-  const roleFromBody = request.body.role as UserRole | undefined;
 
   if (!name || !email || !password) {
     return response.status(400).json({
@@ -42,13 +41,6 @@ export async function register(request: Request, response: Response) {
     });
   }
 
-  const allowedRoles = Object.values(UserRole);
-
-  const selectedRole =
-    roleFromBody && allowedRoles.includes(roleFromBody)
-      ? roleFromBody
-      : UserRole.CUSTOMER;
-
   const hashedPassword = await bcrypt.hash(password, 8);
 
   const user = await prisma.user.create({
@@ -56,7 +48,7 @@ export async function register(request: Request, response: Response) {
       name,
       email: normalizedEmail,
       password: hashedPassword,
-      role: selectedRole,
+      role: UserRole.CUSTOMER,
     },
     select: {
       id: true,
