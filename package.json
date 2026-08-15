@@ -11,7 +11,8 @@
     "prisma:studio": "prisma studio",
     "format": "biome format --write .",
     "lint": "biome lint .",
-    "check": "biome check ."
+    "check": "biome check .",
+    "test": "vitest run"
   },
   "keywords": [
     "nodejs",
@@ -43,8 +44,11 @@
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.3.0",
+    "@types/supertest": "^7.2.1",
     "prisma": "^6.14.0",
+    "supertest": "^7.2.2",
     "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "vitest": "^4.1.10"
   }
 }
