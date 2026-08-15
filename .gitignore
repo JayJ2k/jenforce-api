@@ -3,3 +3,8 @@ node_modules
 dist
 dev.db
 prisma/dev.db
+.stryker-tmp
+reports
+coverage
+.claude
+.windsurf

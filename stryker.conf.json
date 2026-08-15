@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "packageManager": "npm",
+  "testRunner": "vitest",
+  "reporters": ["clear-text", "progress", "html"],
+  "ignorePatterns": [
+    ".claude/**",
+    ".windsurf/**",
+    ".github/**",
+    "dist/**",
+    "node_modules/**",
+    "reports/**",
+    "coverage/**",
+    ".stryker-tmp/**"
+  ],
+  "mutate": [
+    "src/app.ts",
+    "src/controllers/auth.controller.ts",
+    "src/middlewares/auth.middleware.ts"
+  ],
+  "vitest": {
+    "related": false
+  },
+  "thresholds": {
+    "high": 0,
+    "low": 0,
+    "break": 0
+  }
+}
