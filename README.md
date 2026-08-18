@@ -1,69 +1,69 @@
 # Jenforce API
 
-API REST do **Jenforce**, uma central de chamados para suporte tÃ©cnico e atendimento interno.
+API REST do **Jenforce**, uma central de chamados para suporte técnico e atendimento interno.
 
-O projeto foi desenvolvido com foco em simular uma aplicaÃ§Ã£o real de help desk/service desk, permitindo abertura de chamados, acompanhamento de status, definiÃ§Ã£o de prioridade e registro de histÃ³rico por comentÃ¡rios.
+O projeto foi desenvolvido com foco em simular uma aplicação real de help desk/service desk, permitindo abertura de chamados, acompanhamento de status, definição de prioridade e registro de histórico por comentários.
 
 ## Sobre o projeto
 
-O **Jenforce** Ã© uma plataforma para organizar solicitaÃ§Ãµes de suporte, priorizar atendimentos e acompanhar o histÃ³rico de cada chamado.
+O **Jenforce** é uma plataforma para organizar solicitações de suporte, priorizar atendimentos e acompanhar o histórico de cada chamado.
 
-A API permite que usuÃ¡rios criem chamados, acompanhem suas solicitaÃ§Ãµes e adicionem comentÃ¡rios ao histÃ³rico. UsuÃ¡rios com perfil de atendimento ou administraÃ§Ã£o podem visualizar e gerenciar chamados de forma mais ampla.
+A API permite que usuários criem chamados, acompanhem suas solicitações e adicionem comentários ao histórico. Usuários com perfil de atendimento ou administração podem visualizar e gerenciar chamados de forma mais ampla.
 
-## ## PadrÃ£o de contribuiÃ§Ã£o
+## Padrão de contribuição
 
-Este projeto segue um fluxo obrigatÃ³rio baseado em Issues, branches e Pull Requests.
+Este projeto segue um fluxo obrigatório baseado em Issues, branches e Pull Requests.
 
-Antes de qualquer alteraÃ§Ã£o chegar Ã  branch `main`, Ã© necessÃ¡rio:
+Antes de qualquer alteração chegar à branch `main`, é necessário:
 
 - Criar uma Issue no GitHub
-- Criar uma branch especÃ­fica para a tarefa
+- Criar uma branch específica para a tarefa
 - Abrir um Pull Request mencionando a Issue relacionada
-- Executar validaÃ§Ãµes de build, qualidade, seguranÃ§a e arquitetura
+- Executar validações de build, qualidade, segurança e arquitetura
 
-As regras completas estÃ£o documentadas no arquivo `AGENTS.md`](./[AGENTS.md](http://AGENTS.md)).  
+As regras completas estão documentadas no arquivo [`AGENTS.md`](./AGENTS.md).
 
-**Funcionalidades**
+## Funcionalidades
 
-- Cadastro de usuÃ¡rios
-- Login com autenticaÃ§Ã£o JWT
+- Cadastro de usuários
+- Login com autenticação JWT
 - Rota protegida para perfil autenticado
 - Abertura de chamados
 - Listagem de chamados
 - Detalhamento de chamado
-- AtualizaÃ§Ã£o de status
-- AtualizaÃ§Ã£o de prioridade
-- ComentÃ¡rios no histÃ³rico do chamado
-- Controle de acesso por perfil de usuÃ¡rio
+- Atualização de status
+- Atualização de prioridade
+- Comentários no histórico do chamado
+- Controle de acesso por perfil de usuário
 
-## Perfis de usuÃ¡rio
+## Perfis de usuário
 
-- `CUSTOMER` â€” usuÃ¡rio solicitante
-- `AGENT` â€” agente de suporte
-- `ADMIN` â€” administrador
+- `CUSTOMER` — usuário solicitante
+- `AGENT` — agente de suporte
+- `ADMIN` — administrador
 
 ## Status dos chamados
 
-- `OPEN` â€” Aberto
-- `IN_PROGRESS` â€” Em atendimento
-- `RESOLVED` â€” Resolvido
-- `CLOSED` â€” Encerrado
+- `OPEN` — Aberto
+- `IN_PROGRESS` — Em atendimento
+- `RESOLVED` — Resolvido
+- `CLOSED` — Encerrado
 
 ## Prioridades
 
-- `LOW` â€” Baixa
-- `MEDIUM` â€” MÃ©dia
-- `HIGH` â€” Alta
-- `URGENT` â€” Urgente
+- `LOW` — Baixa
+- `MEDIUM` — Média
+- `HIGH` — Alta
+- `URGENT` — Urgente
 
 ## Categorias
 
-- `ACCESS` â€” Acesso
-- `SYSTEM` â€” Sistema
-- `HARDWARE` â€” Hardware
-- `NETWORK` â€” Rede
-- `REQUEST` â€” SolicitaÃ§Ã£o
-- `BUG` â€” Erro/Bug
+- `ACCESS` — Acesso
+- `SYSTEM` — Sistema
+- `HARDWARE` — Hardware
+- `NETWORK` — Rede
+- `REQUEST` — Solicitação
+- `BUG` — Erro/Bug
 
 ## Tecnologias utilizadas
 
@@ -76,53 +76,108 @@ As regras completas estÃ£o documentadas no arquivo `AGENTS.md`](./[AGENTS.md](ht
 - bcryptjs
 - dotenv
 - CORS
+- Biome
+- Vitest
+- Supertest
+- Stryker
 
 ## Estrutura principal
 
 ```txt
-
 jenforce-api/
-
-â”œâ”€â”€ prisma/
-
-â”‚   â””â”€â”€ schema.prisma
-
-â”œâ”€â”€ src/
-
-â”‚   â”œâ”€â”€ config/
-
-â”‚   â”‚   â””â”€â”€ prisma.ts
-
-â”‚   â”œâ”€â”€ controllers/
-
-â”‚   â”‚   â”œâ”€â”€ auth.controller.ts
-
-â”‚   â”‚   â”œâ”€â”€ ticket.controller.ts
-
-â”‚   â”‚   â””â”€â”€ comment.controller.ts
-
-â”‚   â”œâ”€â”€ middlewares/
-
-â”‚   â”‚   â””â”€â”€ auth.middleware.ts
-
-â”‚   â”œâ”€â”€ routes/
-
-â”‚   â”‚   â”œâ”€â”€ auth.routes.ts
-
-â”‚   â”‚   â”œâ”€â”€ ticket.routes.ts
-
-â”‚   â”‚   â””â”€â”€ comment.routes.ts
-
-â”‚   â””â”€â”€ server.ts
-
-â”œâ”€â”€ .env.example
-
-â”œâ”€â”€ package.json
-
-â””â”€â”€ tsconfig.json
++-- .github/
+¦   +-- workflows/
+¦       +-- ci.yml
++-- prisma/
+¦   +-- schema.prisma
++-- src/
+¦   +-- app.ts
+¦   +-- config/
+¦   ¦   +-- prisma.ts
+¦   +-- controllers/
+¦   ¦   +-- auth.controller.ts
+¦   ¦   +-- ticket.controller.ts
+¦   ¦   +-- comment.controller.ts
+¦   +-- middlewares/
+¦   ¦   +-- auth.middleware.ts
+¦   +-- routes/
+¦   ¦   +-- auth.routes.ts
+¦   ¦   +-- ticket.routes.ts
+¦   ¦   +-- comment.routes.ts
+¦   +-- server.ts
++-- tests/
+¦   +-- auth.test.ts
++-- .env.example
++-- package.json
++-- tsconfig.json
 ```
 
-## Qualidade de código com Biome
+## Variáveis de ambiente
+
+Crie um arquivo `.env` local com base no `.env.example`.
+
+```env
+PORT=3334
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="your-secret-key"
+```
+
+O arquivo `.env` não deve ser versionado.
+
+## Como rodar o projeto
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Execute as migrations do Prisma:
+
+```bash
+npx prisma migrate dev
+```
+
+Inicie o servidor em modo desenvolvimento:
+
+```bash
+npm run dev
+```
+
+A API ficará disponível em:
+
+```txt
+http://localhost:3334
+```
+
+## Rotas principais
+
+### Autenticação
+
+```txt
+POST /auth/register
+POST /auth/login
+GET  /auth/me
+```
+
+### Chamados
+
+```txt
+POST   /tickets
+GET    /tickets
+GET    /tickets/:id
+PUT    /tickets/:id
+DELETE /tickets/:id
+```
+
+### Comentários
+
+```txt
+POST /tickets/:ticketId/comments
+GET  /tickets/:ticketId/comments
+```
+
+## Qualidade de código
 
 O Jenforce utiliza o **Biome** para padronização de código, formatação, lint e organização de imports.
 
@@ -131,6 +186,7 @@ Antes de abrir um Pull Request, execute:
 ```bash
 npm run build
 npm run check
+npm test
 ```
 
 Para aplicar correções automáticas de formatação e organização de imports, execute:
@@ -142,9 +198,52 @@ npx biome check --write .
 Scripts disponíveis:
 
 ```bash
+npm run dev
+npm run build
+npm run start
 npm run format
 npm run lint
 npm run check
+npm test
+npm run test:mutation
 ```
 
-Essa validação faz parte do fluxo obrigatório definido no arquivo [`AGENTS.md`](./AGENTS.md).
+## Segurança
+
+Alguns cuidados obrigatórios do projeto:
+
+- Não versionar `.env`
+- Não expor `JWT_SECRET`
+- Não retornar senha nas respostas da API
+- Não registrar tokens ou senhas em logs
+- Cadastro público deve criar apenas usuários `CUSTOMER`
+- Perfis `AGENT` e `ADMIN` devem ser gerenciados por fluxo interno
+- Validar entradas recebidas nas rotas
+- Proteger rotas sensíveis com autenticação
+
+## Testes
+
+Execute os testes automatizados com:
+
+```bash
+npm test
+```
+
+Execute os testes de mutação com:
+
+```bash
+npm run test:mutation
+```
+
+## CI
+
+O projeto possui workflow de CI no GitHub Actions.
+
+A cada Pull Request para a `main`, o CI executa:
+
+- Instalação de dependências
+- Geração do Prisma Client
+- Execução das migrations
+- Build
+- Biome check
+- Testes automatizados
