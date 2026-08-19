@@ -1,9 +1,5 @@
 ﻿import type { NextFunction, Response } from "express";
-import {
-  httpErrorsTotal,
-  httpRequestDurationSeconds,
-  httpRequestsTotal,
-} from "../config/metrics";
+import { httpErrorsTotal, httpRequestDurationSeconds, httpRequestsTotal } from "../config/metrics";
 import type { AuthenticatedRequest } from "./auth.middleware";
 
 function normalizeRoute(request: AuthenticatedRequest) {
@@ -25,8 +21,7 @@ export function metricsMiddleware(
   const startTime = process.hrtime.bigint();
 
   response.on("finish", () => {
-    const durationInSeconds =
-      Number(process.hrtime.bigint() - startTime) / 1_000_000_000;
+    const durationInSeconds = Number(process.hrtime.bigint() - startTime) / 1_000_000_000;
 
     const labels = {
       method: request.method,
