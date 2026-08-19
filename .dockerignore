@@ -1,0 +1,15 @@
+﻿node_modules
+dist
+coverage
+reports
+.stryker-tmp
+.git
+.github
+.env
+.env.local
+npm-debug.log
+dev.db
+prisma/dev.db
+.DS_Store
+.claude
+.windsurf

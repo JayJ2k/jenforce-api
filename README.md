@@ -124,6 +124,49 @@ JWT_SECRET="your-secret-key"
 
 O arquivo `.env` não deve ser versionado.
 
+## Docker
+
+A API pode ser construída em imagem Docker para facilitar a execução em ambiente padronizado.
+
+Para construir a imagem localmente:
+
+```bash
+docker build -t jenforce-api:test .
+```
+
+Para executar o container:
+
+```bash
+docker run --rm -p 3334:3334 --env-file .env jenforce-api:test
+```
+
+A API ficará disponível em:
+
+```txt
+http://localhost:3334
+```
+
+## Healthcheck
+
+A aplicação possui uma rota pública de verificação de saúde:
+
+```txt
+GET /health
+```
+
+Exemplo de resposta:
+
+```json
+{
+  "status": "ok",
+  "service": "jenforce-api",
+  "uptime": 12.345,
+  "timestamp": "2026-08-19T03:00:00.000Z"
+}
+```
+
+Essa rota será usada como base para monitoramento e observabilidade nas próximas etapas do projeto.
+
 ## Como rodar o projeto
 
 Instale as dependências:
