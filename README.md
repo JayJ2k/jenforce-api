@@ -146,6 +146,35 @@ A API ficará disponível em:
 http://localhost:3334
 ```
 
+## Métricas Prometheus
+
+A API expõe métricas no formato Prometheus pela rota:
+
+```txt
+GET /metrics
+```
+
+As métricas incluem:
+
+- Métricas padrão do Node.js com prefixo `jenforce_`
+- Total de requisições HTTP
+- Total de respostas com erro
+- Latência das requisições HTTP em segundos
+
+Métricas customizadas principais:
+
+```txt
+jenforce_http_requests_total
+jenforce_http_errors_total
+jenforce_http_request_duration_seconds
+```
+
+Exemplo local:
+
+```bash
+curl http://localhost:3334/metrics
+```
+
 ## Healthcheck
 
 A aplicação possui uma rota pública de verificação de saúde:
